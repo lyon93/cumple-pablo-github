@@ -337,6 +337,7 @@
   }
   .comentarios-boton-icono{width:20px;flex:0 0 20px;transform:translateY(2px);}
   .comentarios-boton-icono svg{width:20px;height:20px;}
+  .comentarios-boton:disabled{cursor:wait;opacity:.7;}
   .comentarios-confirmacion{
     display:none;
     margin:14px 0 0;
@@ -534,11 +535,11 @@
       <form class="comentarios-formulario" id="formulario-felicitacion">
         <div class="comentarios-campo">
           <label for="nombre-felicitacion">De parte de</label>
-          <input id="nombre-felicitacion" name="nombre" type="text" maxlength="50" placeholder="Escribe tu nombre" required>
+          <input id="nombre-felicitacion" name="nombre" type="text" placeholder="Escribe tu nombre" required>
         </div>
         <div class="comentarios-campo">
           <label for="mensaje-felicitacion">Tu mensaje</label>
-          <textarea id="mensaje-felicitacion" name="mensaje" maxlength="240" placeholder="Escribe una felicitación para Pablo" required></textarea>
+          <textarea id="mensaje-felicitacion" name="mensaje" placeholder="Escribe una felicitación para Pablo" required></textarea>
         </div>
         <button class="comentarios-boton" type="submit">
           <span class="comentarios-boton-contenido">
@@ -561,37 +562,45 @@
     EDICIÓN ESPECIAL DE CUMPLEAÑOS · HECHA CON CARIÑO PARA PABLO · NO ES UNA NOTICIA REAL, ES AÚN MEJOR
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const formularioFelicitacion = document.querySelector('#formulario-felicitacion');
     const confirmacionFelicitacion = document.querySelector('#confirmacion-felicitacion');
     const listaFelicitaciones = document.querySelector('#lista-felicitaciones');
-    const claveFelicitaciones = 'marcumplea-felicitaciones';
+    const textoBotonFelicitacion = formularioFelicitacion.querySelector('.comentarios-boton-texto');
+    const supabaseClient = window.supabase.createClient(
+      'https://vjxctpvfeoonxachhlgw.supabase.co',
+      'sb_publishable_FG-hAhHmp9LXCfgdIGTLOg_bjwHkyFb'
+    );
 
-    function leerFelicitaciones() {
-      try {
-        return JSON.parse(window.localStorage.getItem(claveFelicitaciones)) || [];
-      } catch {
-        return [];
-      }
-    }
-
-    function guardarFelicitaciones(felicitaciones) {
-      window.localStorage.setItem(claveFelicitaciones, JSON.stringify(felicitaciones));
-    }
-
-    function mostrarFelicitaciones() {
-      const felicitaciones = leerFelicitaciones();
+    function mostrarEstadoLista(texto) {
       listaFelicitaciones.replaceChildren();
+      const mensaje = document.createElement('li');
+      mensaje.className = 'felicitacion-vacia';
+      mensaje.textContent = texto;
+      listaFelicitaciones.append(mensaje);
+    }
 
-      if (felicitaciones.length === 0) {
-        const mensajeVacio = document.createElement('li');
-        mensajeVacio.className = 'felicitacion-vacia';
-        mensajeVacio.textContent = 'Sé el primero en felicitar a Pablo.';
-        listaFelicitaciones.append(mensajeVacio);
+    async function mostrarFelicitaciones() {
+      mostrarEstadoLista('Cargando felicitaciones...');
+      const { data: felicitaciones, error } = await supabaseClient
+        .from('felicitaciones')
+        .select('id, nombre, mensaje, creado_en')
+        .order('creado_en', { ascending: false });
+
+      if (error) {
+        mostrarEstadoLista('No se pudieron cargar las felicitaciones.');
         return;
       }
 
-      felicitaciones.slice().reverse().forEach((felicitacion) => {
+      listaFelicitaciones.replaceChildren();
+
+      if (felicitaciones.length === 0) {
+        mostrarEstadoLista('Sé el primero en felicitar a Pablo.');
+        return;
+      }
+
+      felicitaciones.forEach((felicitacion) => {
         const item = document.createElement('li');
         item.className = 'felicitacion-item';
 
@@ -611,9 +620,13 @@
 
         const fecha = document.createElement('time');
         fecha.className = 'felicitacion-fecha';
-        fecha.textContent = felicitacion.creadoEn
-          ? new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(felicitacion.creadoEn))
-          : 'Ahora';
+        fecha.textContent = new Intl.DateTimeFormat('es-ES', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(new Date(felicitacion.creado_en));
 
         const mensaje = document.createElement('p');
         mensaje.className = 'felicitacion-mensaje';
@@ -626,30 +639,52 @@
       });
     }
 
-    formularioFelicitacion.addEventListener('submit', (evento) => {
+    formularioFelicitacion.addEventListener('submit', async (evento) => {
       evento.preventDefault();
       const datos = new FormData(formularioFelicitacion);
       const nombre = datos.get('nombre').trim();
       const mensaje = datos.get('mensaje').trim();
-      const felicitaciones = leerFelicitaciones();
+      const boton = evento.submitter;
 
-      felicitaciones.push({ nombre, mensaje, creadoEn: new Date().toISOString() });
-      guardarFelicitaciones(felicitaciones);
-
-      if (typeof window.confetti === 'function') {
-        window.confetti({
-          particleCount: 140,
-          spread: 90,
-          origin: { y: 0.7 },
-          colors: ['#da0812', '#f5b700', '#1267c4', '#ffffff'],
-          disableForReducedMotion: true
-        });
+      if (!nombre || !mensaje) {
+        confirmacionFelicitacion.textContent = 'Escribe tu nombre y una felicitación para continuar.';
+        confirmacionFelicitacion.classList.add('visible');
+        return;
       }
 
-      confirmacionFelicitacion.textContent = `🎉 ¡Felicitación enviada, ${nombre}! 🎉`;
-      confirmacionFelicitacion.classList.add('visible');
-      formularioFelicitacion.reset();
-      mostrarFelicitaciones();
+      boton.disabled = true;
+      textoBotonFelicitacion.textContent = 'Enviando felicitación...';
+
+      try {
+        const { error } = await supabaseClient
+          .from('felicitaciones')
+          .insert({ nombre, mensaje });
+
+        if (error) {
+          throw error;
+        }
+
+        if (typeof window.confetti === 'function') {
+          window.confetti({
+            particleCount: 140,
+            spread: 90,
+            origin: { y: 0.7 },
+            colors: ['#da0812', '#f5b700', '#1267c4', '#ffffff'],
+            disableForReducedMotion: true
+          });
+        }
+
+        confirmacionFelicitacion.textContent = `🎉 ¡Felicitación enviada, ${nombre}! 🎉`;
+        confirmacionFelicitacion.classList.add('visible');
+        formularioFelicitacion.reset();
+        await mostrarFelicitaciones();
+      } catch {
+        confirmacionFelicitacion.textContent = 'No se pudo enviar la felicitación. Inténtalo de nuevo.';
+        confirmacionFelicitacion.classList.add('visible');
+      } finally {
+        boton.disabled = false;
+        textoBotonFelicitacion.textContent = 'Enviar felicitación';
+      }
     });
 
     mostrarFelicitaciones();
