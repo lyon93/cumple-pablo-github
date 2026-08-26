@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARCUMPLEA - Pablo cumple 7 anos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700;900&family=Roboto+Slab:wght@400;600;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rojo:#da0812;
+    --rojo-oscuro:#a00410;
+    --negro:#191919;
+    --gris-fondo:#f0f0f0;
+    --gris-linea:#dcdcdc;
+    --gris-texto:#4a4a4a;
+    --oro:#f5b700;
+    --blanco:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--blanco);font-family:"Roboto Condensed",sans-serif;color:var(--negro);}
+  a{color:inherit;text-decoration:none;}
+  .ticker-bar{
+    background:var(--negro);
+    color:#ddd;
+    font-size:11px;
+    display:flex;
+    align-items:center;
+    white-space:nowrap;
+    overflow:hidden;
+  }
+  .ticker-bar .etiqueta{
+    background:#000;
+    padding:7px 10px;
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .ticker-bar .items{
+    padding:7px 8px;
+    overflow:hidden;
+    position:relative;
+    flex:1;
+  }
+  .ticker-bar .items span{
+    display:inline-block;
+    padding-left:100%;
+    animation:mover 22s linear infinite;
+  }
+  .ticker-bar .items span i{font-style:normal;color:#666;margin:0 6px;}
+  @keyframes mover{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+  @media (prefers-reduced-motion: reduce){.ticker-bar .items span{animation:none;padding-left:0;}}
+  .top-utility{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 14px;
+    border-bottom:1px solid var(--gris-linea);
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .top-utility .izq,.top-utility .der{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:11px;
+    font-weight:700;
+  }
+  .top-utility .izq .avatar{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:var(--rojo);
+    display:inline-block;
+  }
+  .logo-wrap{text-align:center;padding:2px 0;}
+  .logo-marca{
+    font-family:"PT Serif",serif;
+    font-weight:700;
+    font-style:italic;
+    font-size:clamp(30px,8vw,42px);
+    color:var(--rojo);
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  .top-utility .pill{
+    border:1px solid #999;
+    border-radius:14px;
+    padding:4px 10px;
+    font-size:11px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+  }
+  .top-utility .pill.club{
+    border-color:var(--oro);
+    color:var(--rojo);
+  }
+  nav.menu-rojo{
+    background:var(--rojo);
+    display:flex;
+    overflow-x:auto;
+    white-space:nowrap;
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+  }
+  nav.menu-rojo::-webkit-scrollbar{display:none;}
+  nav.menu-rojo a{
+    color:var(--blanco);
+    font-weight:700;
+    font-size:14px;
+    padding:11px 14px;
+    flex-shrink:0;
+  }
+  nav.menu-rojo a.activo{background:var(--rojo-oscuro);}
+  .fila-escudos{
+    background:#f3f3f3;
+    border-bottom:1px solid var(--gris-linea);
+    display:flex;
+    gap:20px;
+    padding:10px 14px;
+    overflow-x:auto;
+    align-items:center;
+  }
+  .fila-escudos .escudo{
+    flex-shrink:0;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--blanco);
+    border:1px solid var(--gris-linea);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+  }
+  main{max-width:1000px;margin:0 auto;padding:0 0 40px;}
+  .exclusiva{
+    display:inline-block;
+    background:var(--oro);
+    color:var(--negro);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.06em;
+    padding:3px 9px;
+    margin:16px 14px 0;
+  }
+  .portada{padding:8px 14px 0;}
+  h1.titular{
+    font-family:"Roboto Condensed",sans-serif;
+    font-weight:900;
+    font-size:clamp(28px,7vw,46px);
+    line-height:1;
+    letter-spacing:-.01em;
+    margin:8px 0 10px;
+    color:var(--negro);
+  }
+  h1.titular em{color:var(--rojo);font-style:normal;}
+  .entradilla{
+    font-family:"Roboto Slab",serif;
+    font-size:clamp(15px,3.8vw,18px);
+    line-height:1.5;
+    color:var(--gris-texto);
+    margin:0 0 16px;
+  }
+  .foto-wrap{
+    position:relative;
+    background:linear-gradient(180deg,#2b2b2b,#111);
+    aspect-ratio:16/9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .foto-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .foto-fallback{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    background:linear-gradient(180deg,rgba(43,43,43,.65),rgba(17,17,17,.92));
+    text-align:center;
+    padding:24px;
+  }
+  .foto-fallback svg{width:38%;max-width:180px;}
+  .foto-fallback p{
+    position:absolute;
+    bottom:18px;
+    left:18px;
+    right:18px;
+    margin:0;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.03em;
+  }
+  .foto-caption{
+    background:#111;
+    color:#aaa;
+    font-size:11px;
+    padding:6px 10px;
+  }
+  .marcador-mini{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--negro);
+    color:var(--blanco);
+    padding:12px 16px;
+    margin:20px 0;
+  }
+  .marcador-mini .lado{flex:1;text-align:center;font-size:13px;font-weight:700;}
+  .marcador-mini .res{font-size:clamp(22px,6vw,32px);font-weight:900;color:var(--oro);padding:0 10px;white-space:nowrap;}
+  .ficha{border:1px solid var(--gris-linea);margin:20px 0;}
+  .ficha-header{background:var(--negro);color:var(--blanco);font-weight:700;font-size:13px;padding:8px 12px;letter-spacing:.03em;}
+  .ficha-grid{display:grid;grid-template-columns:1fr 1fr;}
+  .ficha-grid div{padding:9px 12px;border-top:1px solid var(--gris-linea);font-size:13px;}
+  .ficha-grid div:nth-child(odd){border-right:1px solid var(--gris-linea);}
+  .ficha-grid .label{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:2px;}
+  .ficha-grid .valor{font-weight:700;font-family:"Roboto Slab",serif;}
+  .cuerpo{padding:0 14px;font-family:"Roboto Slab",serif;font-size:15px;line-height:1.7;color:#232323;}
+  .cuerpo p{margin:0 0 15px;}
+  .cuerpo .cap{font-family:"Roboto Condensed",sans-serif;font-weight:900;color:var(--rojo);}
+  .cita{
+    background:var(--gris-fondo);
+    border-left:5px solid var(--rojo);
+    padding:16px 18px;
+    margin:22px 14px;
+    font-family:"Roboto Slab",serif;
+    font-style:italic;
+    font-size:clamp(16px,4.4vw,19px);
+    color:#222;
+  }
+  .cita span{
+    display:block;
+    font-family:"Roboto Condensed",sans-serif;
+    font-style:normal;
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.08em;
+    margin-top:10px;
+    color:#777;
+    text-transform:uppercase;
+  }
+  .lo-mas{padding:0 14px;margin-top:30px;}
+  .lo-mas h2{
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.04em;
+    border-bottom:3px solid var(--rojo);
+    display:inline-block;
+    padding-bottom:6px;
+    margin:0 0 12px;
+    text-transform:uppercase;
+  }
+  .lo-mas ol{list-style:none;margin:0;padding:0;}
+  .lo-mas li{
+    display:flex;
+    gap:12px;
+    align-items:baseline;
+    padding:10px 0;
+    border-top:1px solid var(--gris-linea);
+    font-family:"Roboto Slab",serif;
+    font-size:14px;
+  }
+  .lo-mas li:first-child{border-top:none;}
+  .lo-mas .num{
+    font-family:"Roboto Condensed",sans-serif;
+    font-weight:900;
+    color:var(--rojo);
+    font-size:20px;
+    width:20px;
+    flex-shrink:0;
+  }
+  footer{
+    text-align:center;
+    padding:24px 16px 32px;
+    font-size:11px;
+    color:#999;
+    border-top:1px solid var(--gris-linea);
+    margin-top:20px;
+  }
+  @media (max-width:640px){
+    .ficha-grid{grid-template-columns:1fr;}
+    .ficha-grid div:nth-child(odd){border-right:none;}
+    .top-utility{justify-content:center;}
+    .top-utility .izq,.top-utility .der{justify-content:center;flex-wrap:wrap;}
+    .marcador-mini{gap:10px;}
+  }
+</style>
+</head>
+<body>
+  <div class="ticker-bar">
+    <span class="etiqueta">ES NOTICIA:</span>
+    <div class="items"><span>Pablo cumple 7 anos <i>|</i> Fiesta de cumpleanos en directo <i>|</i> Real Madrid, equipo del corazon <i>|</i> La tarta mas esperada del ano <i>|</i> Julian, el primo, invitado especial <i>|</i> Ultima hora: llegan los regalos</span></div>
+  </div>
+
+  <div class="top-utility">
+    <div class="izq">
+      <span class="avatar"></span> La fiesta de hoy
+      <span style="opacity:.5">|</span>
+      Radio Cumple
+    </div>
+    <div class="logo-wrap"><p class="logo-marca">MARCUMPLEA</p></div>
+    <div class="der">
+      <span class="pill">Espana</span>
+      <span class="pill club">CLUB CUMPLE</span>
+      <span class="pill">Invitados</span>
+    </div>
+  </div>
+
+  <nav class="menu-rojo">
+    <a class="activo" href="#">Futbol</a>
+    <a href="#">Tarta</a>
+    <a href="#">Regalos</a>
+    <a href="#">Familia</a>
+    <a href="#">Amigos</a>
+    <a href="#">Ultima hora</a>
+    <a href="#">Agenda del dia</a>
+    <a href="#">Mas +</a>
+  </nav>
+
+  <div class="fila-escudos">
+    <div class="escudo">Ab</div>
+    <div class="escudo">Ta</div>
+    <div class="escudo">Re</div>
+    <div class="escudo">Fa</div>
+    <div class="escudo">Am</div>
+    <div class="escudo">Fi</div>
+    <div class="escudo">Go</div>
+    <div class="escudo">7</div>
+    <div class="escudo">RM</div>
+  </div>
+
+  <main>
+    <span class="exclusiva">EXCLUSIVA</span>
+
+    <div class="portada">
+      <h1 class="titular">Pablo cumple 7 anos y ya es el <em>fichaje del siglo</em> en su casa</h1>
+      <p class="entradilla">El portero mas prometedor del patio del colegio sopla hoy sus 7 velas. Fuentes cercanas a la familia confirman que su sueno sigue intacto: debutar algun dia bajo los palos del Santiago Bernabeu con el "1" a la espalda.</p>
+
+      <div class="foto-wrap">
+        <img src="./img/pablo.jpg" alt="Pablo celebrando su cumpleanos" loading="eager" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'">
+        <div class="foto-fallback" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="34" r="16" fill="#da0812"></circle>
+            <path d="M20 88c2-20 14-30 30-30s28 10 30 30" stroke="#da0812" stroke-width="4" fill="none"></path>
+            <circle cx="50" cy="34" r="16" stroke="#fff" stroke-width="2"></circle>
+          </svg>
+          <p>Anade tu foto en <strong>img/pablo.jpg</strong> y aparecera aqui.</p>
+        </div>
+      </div>
+      <p class="foto-caption">Pablo, ayer, entrenando de cara a la gran fiesta de hoy. / MARCUMPLEA</p>
+
+      <div class="marcador-mini">
+        <div class="lado">EQUIPO<br>HUGO</div>
+        <div class="res">7 - inf</div>
+        <div class="lado">ANOS<br>POR VIVIR</div>
+      </div>
+
+      <div class="ficha">
+        <div class="ficha-header">FICHA DEL JUGADOR</div>
+        <div class="ficha-grid">
+          <div><span class="label">Nombre</span><span class="valor">Pablo</span></div>
+          <div><span class="label">Edad</span><span class="valor">7 anos (recien cumplidos)</span></div>
+          <div><span class="label">Equipo del corazon</span><span class="valor">Real Madrid C.F.</span></div>
+          <div><span class="label">Posicion</span><span class="valor">Portero</span></div>
+          <div><span class="label">Dorsal sonado</span><span class="valor">N 1</span></div>
+          <div><span class="label">Debut oficial</span><span class="valor">Hoy, en la fiesta</span></div>
+        </div>
+      </div>
+
+      <div class="cuerpo">
+        <p><span class="cap">MADRID.</span> Se cumplen hoy 7 anos desde que Pablo debuto en el mundo, y desde entonces no ha dejado de sumar minutos de juego, goles imaginarios en el salon y una aficion al Real Madrid que ya nadie discute en su casa. Este cumpleanos llega marcado por la ilusion de una nueva temporada: mas alto, mas rapido, y con mas ganas que nunca de soplar las velas.</p>
+        <p>Testigos presenciales aseguran que Pablo lleva toda la semana entrenando la celebracion de gol frente al espejo, por si esta tarde hay ocasion de estrenarla delante de la tarta. "Esta en su mejor momento de forma", comenta una fuente cercana al vestuario familiar, "aunque todavia tiene que mejorar el remate con el tenedor a la hora de comer verdura".</p>
+      </div>
+
+      <div class="cita">
+        "Hoy no juego para el Madrid, juego para cumplir 7 anos. Pero el sueno del Bernabeu sigue en pie."
+        <span>Pablo, antes de apagar las velas</span>
+      </div>
+
+      <div class="cuerpo">
+        <p>La entidad familiar confirma que la celebracion incluira tarta, regalos y, segun fuentes muy fiables, "mas abrazos que en una final de Champions". Desde MARCUMPLEA seguiremos informando de cada detalle de esta jornada historica.</p>
+        <p><span class="cap">Feliz cumpleanos, Pablo.</span> Que cumplas muchos mas, campeon.</p>
+      </div>
+
+      <div class="lo-mas">
+        <h2>Lo mas leido hoy</h2>
+        <ol>
+          <li><span class="num">1</span> Pablo bate el record familiar de velas sopladas de un solo golpe</li>
+          <li><span class="num">2</span> Asi fue el calentamiento previo a la fiesta: tarta, globos y mucha ilusion</li>
+          <li><span class="num">3</span> El once inicial de invitados que nadie quiere perderse</li>
+          <li><span class="num">4</span> Ultima hora: los regalos ya estan sobre la mesa</li>
+          <li><span class="num">5</span> Cronica de un cumpleanos historico, minuto a minuto</li>
+        </ol>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    EDICION ESPECIAL DE CUMPLEANOS · HECHA CON CARINO PARA HUGO · NO ES UNA NOTICIA REAL, ES AUN MEJOR
+  </footer>
+</body>
+</html>
