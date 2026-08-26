@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MARCUMPLEA - Pablo cumple 7 anos</title>
+<title>MARCA - Pablo cumple 7 años</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700;900&family=Roboto+Slab:wght@400;600;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;800&family=Roboto:wght@400&family=Roboto+Condensed:wght@400;500;700;900&family=Roboto+Slab:wght@400;600;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
 <style>
   :root{
     --rojo:#da0812;
@@ -105,27 +105,6 @@
     flex-shrink:0;
   }
   nav.menu-rojo a.activo{background:var(--rojo-oscuro);}
-  .fila-escudos{
-    background:#f3f3f3;
-    border-bottom:1px solid var(--gris-linea);
-    display:flex;
-    gap:20px;
-    padding:10px 14px;
-    overflow-x:auto;
-    align-items:center;
-  }
-  .fila-escudos .escudo{
-    flex-shrink:0;
-    width:32px;
-    height:32px;
-    border-radius:50%;
-    background:var(--blanco);
-    border:1px solid var(--gris-linea);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:14px;
-  }
   main{max-width:1000px;margin:0 auto;padding:0 0 40px;}
   .exclusiva{
     display:inline-block;
@@ -139,8 +118,8 @@
   }
   .portada{padding:8px 14px 0;}
   h1.titular{
-    font-family:"Roboto Condensed",sans-serif;
-    font-weight:900;
+    font-family:"Barlow Semi Condensed",sans-serif;
+    font-weight:800;
     font-size:clamp(28px,7vw,46px);
     line-height:1;
     letter-spacing:-.01em;
@@ -149,7 +128,8 @@
   }
   h1.titular em{color:var(--rojo);font-style:normal;}
   .entradilla{
-    font-family:"Roboto Slab",serif;
+    font-family:"Roboto",sans-serif;
+    font-weight:400;
     font-size:clamp(15px,3.8vw,18px);
     line-height:1.5;
     color:var(--gris-texto);
@@ -158,7 +138,9 @@
   .foto-wrap{
     position:relative;
     background:linear-gradient(180deg,#2b2b2b,#111);
-    aspect-ratio:16/9;
+    aspect-ratio:3/4;
+    max-width:720px;
+    margin:0 auto;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -168,6 +150,7 @@
     width:100%;
     height:100%;
     object-fit:cover;
+    object-position:center 20%;
     display:block;
   }
   .foto-fallback{
@@ -197,20 +180,11 @@
     color:#aaa;
     font-size:11px;
     padding:6px 10px;
+    max-width:720px;
+    margin:0 auto;
   }
-  .marcador-mini{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background:var(--negro);
-    color:var(--blanco);
-    padding:12px 16px;
-    margin:20px 0;
-  }
-  .marcador-mini .lado{flex:1;text-align:center;font-size:13px;font-weight:700;}
-  .marcador-mini .res{font-size:clamp(22px,6vw,32px);font-weight:900;color:var(--oro);padding:0 10px;white-space:nowrap;}
   .ficha{border:1px solid var(--gris-linea);margin:20px 0;}
-  .ficha-header{background:var(--negro);color:var(--blanco);font-weight:700;font-size:13px;padding:8px 12px;letter-spacing:.03em;}
+  .ficha-header{background:var(--negro);color:var(--blanco);font-family:"Barlow Semi Condensed",sans-serif;font-weight:800;font-size:13px;padding:8px 12px;letter-spacing:.03em;}
   .ficha-grid{display:grid;grid-template-columns:1fr 1fr;}
   .ficha-grid div{padding:9px 12px;border-top:1px solid var(--gris-linea);font-size:13px;}
   .ficha-grid div:nth-child(odd){border-right:1px solid var(--gris-linea);}
@@ -242,8 +216,9 @@
   }
   .lo-mas{padding:0 14px;margin-top:30px;}
   .lo-mas h2{
+    font-family:"Barlow Semi Condensed",sans-serif;
     font-size:13px;
-    font-weight:900;
+    font-weight:800;
     letter-spacing:.04em;
     border-bottom:3px solid var(--rojo);
     display:inline-block;
@@ -270,6 +245,175 @@
     width:20px;
     flex-shrink:0;
   }
+  .comentarios{
+    max-width:1000px;
+    margin:0 auto;
+    padding:28px 14px 0;
+    border-top:5px solid #eef1f4;
+  }
+  .comentarios h2{
+    margin:10px 0 28px;
+    font-family:"Barlow Semi Condensed",sans-serif;
+    font-size:24px;
+    font-weight:800;
+  }
+  .comentarios-vacio{text-align:center;}
+  .comentarios-icono{
+    width:48px;
+    height:48px;
+    margin:0 auto 10px;
+    border-radius:50%;
+    background:#dbe5ee;
+    color:#fff;
+    display:grid;
+    place-items:center;
+  }
+  .comentarios-icono svg{width:27px;height:27px;}
+  .comentarios-vacio p{
+    margin:0 0 24px;
+    color:var(--negro);
+    font-family:"Roboto",sans-serif;
+    font-size:18px;
+    font-weight:400;
+  }
+  .comentarios-formulario{
+    max-width:720px;
+    margin:0 auto;
+    text-align:left;
+  }
+  .comentarios-campo{margin-bottom:16px;}
+  .comentarios-campo label{
+    display:block;
+    margin-bottom:6px;
+    font-family:"Barlow Semi Condensed",sans-serif;
+    font-size:16px;
+    font-weight:800;
+  }
+  .comentarios-campo input,.comentarios-campo textarea{
+    width:100%;
+    border:1px solid #c9d2db;
+    border-radius:5px;
+    padding:11px 12px;
+    background:#fff;
+    color:var(--negro);
+    font-family:"Roboto",sans-serif;
+    font-size:16px;
+    line-height:1.4;
+  }
+  .comentarios-campo textarea{min-height:112px;resize:vertical;}
+  .comentarios-campo input:focus,.comentarios-campo textarea:focus{
+    outline:3px solid rgba(18,103,196,.2);
+    border-color:#1267c4;
+  }
+  .comentarios-boton{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    max-width:720px;
+    margin:0 auto;
+    padding:13px 18px;
+    border-radius:6px;
+    background:#1267c4;
+    color:var(--blanco);
+    font-family:"Barlow Semi Condensed",sans-serif;
+    font-size:16px;
+    font-weight:800;
+    line-height:20px;
+    border:0;
+    box-shadow:0 3px 6px rgba(0,0,0,.2);
+    cursor:default;
+  }
+  .comentarios-boton-contenido{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+  }
+  .comentarios-boton-icono,.comentarios-boton-texto{
+    height:20px;
+    display:flex;
+    align-items:center;
+  }
+  .comentarios-boton-icono{width:20px;flex:0 0 20px;transform:translateY(2px);}
+  .comentarios-boton-icono svg{width:20px;height:20px;}
+  .comentarios-confirmacion{
+    display:none;
+    margin:14px 0 0;
+    color:var(--negro);
+    font-family:"Barlow Semi Condensed",sans-serif;
+    font-size:15px;
+    font-weight:500;
+    text-align:center;
+  }
+  .comentarios-confirmacion.visible{display:block;
+  margin-top:16px;
+  }
+  .lista-felicitaciones{
+    max-width:720px;
+    max-height:420px;
+    margin:32px auto 0;
+    padding:0 8px 0 0;
+    list-style:none;
+    text-align:left;
+    overflow-y:auto;
+    scrollbar-color:#b5bec6 #f0f2f4;
+    scrollbar-width:thin;
+  }
+  .lista-felicitaciones::-webkit-scrollbar{width:8px;}
+  .lista-felicitaciones::-webkit-scrollbar-track{background:#f0f2f4;border-radius:8px;}
+  .lista-felicitaciones::-webkit-scrollbar-thumb{background:#b5bec6;border-radius:8px;}
+  .lista-felicitaciones::-webkit-scrollbar-thumb:hover{background:#89949e;}
+  .felicitacion-vacia{
+    margin:0;
+    color:#707b85;
+    font-family:"Roboto",sans-serif;
+    font-size:14px;
+    text-align:center;
+  }
+  .felicitacion-item{
+    margin-bottom:10px;
+    padding:16px 0;
+    border-bottom:1px solid #d9d9d9;
+    display:grid;
+    grid-template-columns:48px minmax(0,1fr);
+    column-gap:14px;
+  }
+  .felicitacion-avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#d83b2d;
+    color:#fff;
+    display:grid;
+    place-items:center;
+    font-family:"Barlow Semi Condensed",sans-serif;
+    font-size:22px;
+    font-weight:800;
+  }
+  .felicitacion-contenido{min-width:0;}
+  .felicitacion-cabecera{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    margin-bottom:7px;
+  }
+  .felicitacion-autor{
+    display:block;
+    color:var(--negro);
+    font-family:"Barlow Semi Condensed",sans-serif;
+    font-size:17px;
+    font-weight:800;
+  }
+  .felicitacion-fecha{color:#7b858e;font-family:"Roboto",sans-serif;font-size:12px;}
+  .felicitacion-mensaje{
+    margin:0;
+    color:#171717;
+    font-family:"Roboto",sans-serif;
+    font-size:15px;
+    line-height:1.45;
+    white-space:pre-wrap;
+  }
   footer{
     text-align:center;
     padding:24px 16px 32px;
@@ -283,14 +427,13 @@
     .ficha-grid div:nth-child(odd){border-right:none;}
     .top-utility{justify-content:center;}
     .top-utility .izq,.top-utility .der{justify-content:center;flex-wrap:wrap;}
-    .marcador-mini{gap:10px;}
   }
 </style>
 </head>
 <body>
   <div class="ticker-bar">
     <span class="etiqueta">ES NOTICIA:</span>
-    <div class="items"><span>Pablo cumple 7 anos <i>|</i> Fiesta de cumpleanos en directo <i>|</i> Real Madrid, equipo del corazon <i>|</i> La tarta mas esperada del ano <i>|</i> Julian, el primo, invitado especial <i>|</i> Ultima hora: llegan los regalos</span></div>
+    <div class="items"><span>Pablo cumple 7 años <i>|</i> Fiesta de cumpleaños en directo <i>|</i> Real Madrid, equipo del corazón <i>|</i> La tarta más esperada del año <i>|</i> Julián, el primo, invitado especial <i>|</i> Última hora: llegan los regalos</span></div>
   </div>
 
   <div class="top-utility">
@@ -301,103 +444,215 @@
     </div>
     <div class="logo-wrap"><img class="logo-marca" src="./marca-logo.svg" alt="Marcumplea"></div>
     <div class="der">
-      <span class="pill">Espana</span>
+      <span class="pill">España</span>
       <span class="pill club">CLUB CUMPLE</span>
       <span class="pill">Invitados</span>
     </div>
   </div>
 
   <nav class="menu-rojo">
-    <a class="activo" href="#">Futbol</a>
+    <a class="activo" href="#">Fútbol</a>
     <a href="#">Tarta</a>
     <a href="#">Regalos</a>
     <a href="#">Familia</a>
     <a href="#">Amigos</a>
-    <a href="#">Ultima hora</a>
-    <a href="#">Agenda del dia</a>
-    <a href="#">Mas +</a>
+    <a href="#">Última hora</a>
+    <a href="#">Agenda del día</a>
+    <a href="#">Más +</a>
   </nav>
-
-  <div class="fila-escudos">
-    <div class="escudo">Ab</div>
-    <div class="escudo">Ta</div>
-    <div class="escudo">Re</div>
-    <div class="escudo">Fa</div>
-    <div class="escudo">Am</div>
-    <div class="escudo">Fi</div>
-    <div class="escudo">Go</div>
-    <div class="escudo">7</div>
-    <div class="escudo">RM</div>
-  </div>
 
   <main>
     <span class="exclusiva">EXCLUSIVA</span>
 
     <div class="portada">
-      <h1 class="titular">Pablo cumple 7 anos y ya es el <em>fichaje del siglo</em> en su casa</h1>
-      <p class="entradilla">El portero mas prometedor del patio del colegio sopla hoy sus 7 velas. Fuentes cercanas a la familia confirman que su sueno sigue intacto: debutar algun dia bajo los palos del Santiago Bernabeu con el "1" a la espalda.</p>
+      <h1 class="titular">Pablo cumple 7 años y ya es el <em>fichaje del siglo</em> en su casa</h1>
+      <p class="entradilla">El portero más prometedor del patio del colegio sopla hoy sus 7 velas. Fuentes cercanas a la familia confirman que su sueño sigue intacto: debutar algún día bajo los palos del Santiago Bernabéu con el "1" a la espalda.</p>
 
       <div class="foto-wrap">
-        <img src="./img/pablo.jpg" alt="Pablo celebrando su cumpleanos" loading="eager" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'">
+        <img src="./cumple_pablo.jpeg" alt="Pablo celebrando su cumpleaños" loading="eager" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'">
         <div class="foto-fallback" aria-hidden="true">
           <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="34" r="16" fill="#da0812"></circle>
             <path d="M20 88c2-20 14-30 30-30s28 10 30 30" stroke="#da0812" stroke-width="4" fill="none"></path>
             <circle cx="50" cy="34" r="16" stroke="#fff" stroke-width="2"></circle>
           </svg>
-          <p>Anade tu foto en <strong>img/pablo.jpg</strong> y aparecera aqui.</p>
+          <p>No se pudo cargar la foto de Pablo.</p>
         </div>
       </div>
       <p class="foto-caption">Pablo, ayer, entrenando de cara a la gran fiesta de hoy. / MARCUMPLEA</p>
-
-      <div class="marcador-mini">
-        <div class="lado">EQUIPO<br>HUGO</div>
-        <div class="res">7 - inf</div>
-        <div class="lado">ANOS<br>POR VIVIR</div>
-      </div>
 
       <div class="ficha">
         <div class="ficha-header">FICHA DEL JUGADOR</div>
         <div class="ficha-grid">
           <div><span class="label">Nombre</span><span class="valor">Pablo</span></div>
-          <div><span class="label">Edad</span><span class="valor">7 anos (recien cumplidos)</span></div>
-          <div><span class="label">Equipo del corazon</span><span class="valor">Real Madrid C.F.</span></div>
-          <div><span class="label">Posicion</span><span class="valor">Portero</span></div>
-          <div><span class="label">Dorsal sonado</span><span class="valor">N 1</span></div>
+          <div><span class="label">Edad</span><span class="valor">7 años (recién cumplidos)</span></div>
+          <div><span class="label">Equipo del corazón</span><span class="valor">Real Madrid C.F.</span></div>
+          <div><span class="label">Posición</span><span class="valor">Portero</span></div>
+          <div><span class="label">Dorsal soñado</span><span class="valor">N 1</span></div>
           <div><span class="label">Debut oficial</span><span class="valor">Hoy, en la fiesta</span></div>
         </div>
       </div>
 
       <div class="cuerpo">
-        <p><span class="cap">MADRID.</span> Se cumplen hoy 7 anos desde que Pablo debuto en el mundo, y desde entonces no ha dejado de sumar minutos de juego, goles imaginarios en el salon y una aficion al Real Madrid que ya nadie discute en su casa. Este cumpleanos llega marcado por la ilusion de una nueva temporada: mas alto, mas rapido, y con mas ganas que nunca de soplar las velas.</p>
-        <p>Testigos presenciales aseguran que Pablo lleva toda la semana entrenando la celebracion de gol frente al espejo, por si esta tarde hay ocasion de estrenarla delante de la tarta. "Esta en su mejor momento de forma", comenta una fuente cercana al vestuario familiar, "aunque todavia tiene que mejorar el remate con el tenedor a la hora de comer verdura".</p>
+        <p><span class="cap">MADRID.</span> Se cumplen hoy 7 años desde que Pablo debutó en el mundo, y desde entonces no ha dejado de sumar minutos de juego, goles imaginarios en el salón y una afición al Real Madrid que ya nadie discute en su casa. Este cumpleaños llega marcado por la ilusión de una nueva temporada: más alto, más rápido, y con más ganas que nunca de soplar las velas.</p>
+        <p>Testigos presenciales aseguran que Pablo lleva toda la semana entrenando la celebración de gol frente al espejo, por si esta tarde hay ocasión de estrenarla delante de la tarta. "Está en su mejor momento de forma", comenta una fuente cercana al vestuario familiar, "aunque todavía tiene que mejorar el remate con el tenedor a la hora de comer verdura".</p>
       </div>
 
       <div class="cita">
-        "Hoy no juego para el Madrid, juego para cumplir 7 anos. Pero el sueno del Bernabeu sigue en pie."
+        "Hoy no juego para el Madrid, juego para cumplir 7 años. Pero el sueño del Bernabéu sigue en pie."
         <span>Pablo, antes de apagar las velas</span>
       </div>
 
       <div class="cuerpo">
-        <p>La entidad familiar confirma que la celebracion incluira tarta, regalos y, segun fuentes muy fiables, "mas abrazos que en una final de Champions". Desde MARCUMPLEA seguiremos informando de cada detalle de esta jornada historica.</p>
-        <p><span class="cap">Feliz cumpleanos, Pablo.</span> Que cumplas muchos mas, campeon.</p>
+        <p>La entidad familiar confirma que la celebración incluirá tarta, regalos y, según fuentes muy fiables, "más abrazos que en una final de Champions". Desde MARCUMPLEA seguiremos informando de cada detalle de esta jornada histórica.</p>
+        <p><span class="cap">Feliz cumpleaños, Pablo.</span> Que cumplas muchos más, campeón.</p>
       </div>
 
       <div class="lo-mas">
-        <h2>Lo mas leido hoy</h2>
+        <h2>Lo más leído hoy</h2>
         <ol>
-          <li><span class="num">1</span> Pablo bate el record familiar de velas sopladas de un solo golpe</li>
-          <li><span class="num">2</span> Asi fue el calentamiento previo a la fiesta: tarta, globos y mucha ilusion</li>
+          <li><span class="num">1</span> Pablo bate el récord familiar de velas sopladas de un solo golpe</li>
+          <li><span class="num">2</span> Así fue el calentamiento previo a la fiesta: tarta, globos y mucha ilusión</li>
           <li><span class="num">3</span> El once inicial de invitados que nadie quiere perderse</li>
-          <li><span class="num">4</span> Ultima hora: los regalos ya estan sobre la mesa</li>
-          <li><span class="num">5</span> Cronica de un cumpleanos historico, minuto a minuto</li>
+          <li><span class="num">4</span> Última hora: los regalos ya están sobre la mesa</li>
+          <li><span class="num">5</span> Crónica de un cumpleaños histórico, minuto a minuto</li>
         </ol>
       </div>
     </div>
   </main>
 
+  <section class="comentarios" aria-labelledby="titulo-comentarios">
+    <h2 id="titulo-comentarios">Comentarios</h2>
+    <div class="comentarios-vacio">
+      <div class="comentarios-icono" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4h16v12H8l-4 4V4Z" fill="currentColor"></path>
+          <path d="M8 8h8M8 11h6" stroke="#dbe5ee" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <p>¿Quieres felicitar a Pablo?</p>
+      <form class="comentarios-formulario" id="formulario-felicitacion">
+        <div class="comentarios-campo">
+          <label for="nombre-felicitacion">De parte de</label>
+          <input id="nombre-felicitacion" name="nombre" type="text" maxlength="50" placeholder="Escribe tu nombre" required>
+        </div>
+        <div class="comentarios-campo">
+          <label for="mensaje-felicitacion">Tu mensaje</label>
+          <textarea id="mensaje-felicitacion" name="mensaje" maxlength="240" placeholder="Escribe una felicitación para Pablo" required></textarea>
+        </div>
+        <button class="comentarios-boton" type="submit">
+          <span class="comentarios-boton-contenido">
+            <span class="comentarios-boton-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4h16v12H8l-4 4V4Z" fill="currentColor"></path>
+                <path d="M8 8h8M8 11h6" stroke="#1267c4" stroke-width="1.8" stroke-linecap="round"></path>
+              </svg>
+            </span>
+            <span class="comentarios-boton-texto">Enviar felicitación</span>
+          </span>
+        </button>
+        <p class="comentarios-confirmacion" id="confirmacion-felicitacion" role="status" aria-live="polite"></p>
+        <ul class="lista-felicitaciones" id="lista-felicitaciones" aria-live="polite"></ul>
+      </form>
+    </div>
+  </section>
+
   <footer>
-    EDICION ESPECIAL DE CUMPLEANOS · HECHA CON CARINO PARA HUGO · NO ES UNA NOTICIA REAL, ES AUN MEJOR
+    EDICIÓN ESPECIAL DE CUMPLEAÑOS · HECHA CON CARIÑO PARA PABLO · NO ES UNA NOTICIA REAL, ES AÚN MEJOR
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  <script>
+    const formularioFelicitacion = document.querySelector('#formulario-felicitacion');
+    const confirmacionFelicitacion = document.querySelector('#confirmacion-felicitacion');
+    const listaFelicitaciones = document.querySelector('#lista-felicitaciones');
+    const claveFelicitaciones = 'marcumplea-felicitaciones';
+
+    function leerFelicitaciones() {
+      try {
+        return JSON.parse(window.localStorage.getItem(claveFelicitaciones)) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function guardarFelicitaciones(felicitaciones) {
+      window.localStorage.setItem(claveFelicitaciones, JSON.stringify(felicitaciones));
+    }
+
+    function mostrarFelicitaciones() {
+      const felicitaciones = leerFelicitaciones();
+      listaFelicitaciones.replaceChildren();
+
+      if (felicitaciones.length === 0) {
+        const mensajeVacio = document.createElement('li');
+        mensajeVacio.className = 'felicitacion-vacia';
+        mensajeVacio.textContent = 'Sé el primero en felicitar a Pablo.';
+        listaFelicitaciones.append(mensajeVacio);
+        return;
+      }
+
+      felicitaciones.slice().reverse().forEach((felicitacion) => {
+        const item = document.createElement('li');
+        item.className = 'felicitacion-item';
+
+        const avatar = document.createElement('span');
+        avatar.className = 'felicitacion-avatar';
+        avatar.textContent = felicitacion.nombre.charAt(0).toUpperCase();
+
+        const contenido = document.createElement('div');
+        contenido.className = 'felicitacion-contenido';
+
+        const cabecera = document.createElement('div');
+        cabecera.className = 'felicitacion-cabecera';
+
+        const autor = document.createElement('strong');
+        autor.className = 'felicitacion-autor';
+        autor.textContent = felicitacion.nombre;
+
+        const fecha = document.createElement('time');
+        fecha.className = 'felicitacion-fecha';
+        fecha.textContent = felicitacion.creadoEn
+          ? new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(felicitacion.creadoEn))
+          : 'Ahora';
+
+        const mensaje = document.createElement('p');
+        mensaje.className = 'felicitacion-mensaje';
+        mensaje.textContent = felicitacion.mensaje;
+
+        cabecera.append(autor, fecha);
+        contenido.append(cabecera, mensaje);
+        item.append(avatar, contenido);
+        listaFelicitaciones.append(item);
+      });
+    }
+
+    formularioFelicitacion.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+      const datos = new FormData(formularioFelicitacion);
+      const nombre = datos.get('nombre').trim();
+      const mensaje = datos.get('mensaje').trim();
+      const felicitaciones = leerFelicitaciones();
+
+      felicitaciones.push({ nombre, mensaje, creadoEn: new Date().toISOString() });
+      guardarFelicitaciones(felicitaciones);
+
+      if (typeof window.confetti === 'function') {
+        window.confetti({
+          particleCount: 140,
+          spread: 90,
+          origin: { y: 0.7 },
+          colors: ['#da0812', '#f5b700', '#1267c4', '#ffffff'],
+          disableForReducedMotion: true
+        });
+      }
+
+      confirmacionFelicitacion.textContent = `🎉 ¡Felicitación enviada, ${nombre}! 🎉`;
+      confirmacionFelicitacion.classList.add('visible');
+      formularioFelicitacion.reset();
+      mostrarFelicitaciones();
+    });
+
+    mostrarFelicitaciones();
+  </script>
 </body>
 </html>
